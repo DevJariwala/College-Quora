@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block title %} Home {% endblock title%} 
+
+{% block content %}
+
+  <div class="container">
+    <div style="text-align: center">
+      <h1>Quora</h1>
+      <p style="font-size: large">
+        A place to share knowledge and better understand the world
+      </p>
+    </div>
+    <div style="text-align: center">
+      <h2>Login</h2>
+    </div>
+    <form method="post" action="{% url 'home' %}">
+      {% csrf_token %}
+
+      <label for="" style="font-size: larger">Username:</label>
+      {{form.username}}
+      <span>{{form.username.errors}}</span>
+
+      <label for="" style="font-size: larger; margin-top: 100px">Password:</label>
+      {{form.password}}
+      <span>{{form.password.errors}}</span>
+
+      {% if form.non_field_errors %}
+        <span>{{form.non_field_errors.as_ul}}</span>
+      {% endif %}
+      <button type="submit" style="margin: 10px auto">
+        <a class="waves-effect waves-light btn-small"><i class="material-icons right">send</i>login</a>
+      </button>
+    </form>
+
+    <div style="text-align: right">
+      <a href={% url 'sign_up' %}>Sign Up with email</a>
+    </div>
+  </div>
+
+  {% if ans %}
+    <h1>This is cool</h1>
+  {% endif %} 
+{% endblock content %} 
+

@@ -1,0 +1,39 @@
+{% extends 'base1.html' %}
+
+{% block title %} Search Result {% endblock title %}
+
+{% block content %}
+    <div class="container my-3">
+       <h1>Search Results:</h1> 
+    </div>
+
+    {% if all_questions|length < 1 %}
+        <div class="container my-3">
+            <p>No search Result</p>
+            Your Search Query : <strong> {{query}}</strong> - did not match any documents <br>
+            Suggestions:
+            <ul>
+                <li>Try different key words</li>
+                <li>Make sure that all words are spelled correctly</li>
+                <li>Try more general keywords</li>
+                <li>Try fewer keywords</li>
+                <li>Ask the question </li>
+            </ul>
+        </div>
+        
+    {% endif %}
+
+    {% for question in all_questions %}
+        <div class="card" style="width: 80%;height:150px; margin: 10px auto">
+            <div class="card-body" style="margin: 10px">
+            <a href={% url 'question' question.id %} style="text-decoration: none">
+                <h3 class="title-name" style="color: black">{{question.title}}</h3>
+                <h5 class="author-name" style="color: rgb(143, 134, 134)">
+                - {{question.author}}
+                </h5>
+            </a>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock content %}

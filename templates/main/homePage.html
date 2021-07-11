@@ -1,0 +1,20 @@
+{% extends 'base1.html' %} {% block content %}
+
+<div class="container" style="margin-top: 50px">
+  <h3 style="text-align: center">Questions for you</h3>
+  <hr />
+  {% for question in questions %}
+  <div class="card" style="width: 80%;height:150px; margin: 10px auto">
+    <div class="card-body" style="margin: 10px">
+      <a href={% url 'question' question.id %} style="text-decoration: none">
+        <h3 class="title-name" style="color: black">{{question.title}}</h3>
+        <h5 class="author-name" style="color: rgb(143, 134, 134)">
+          - {{question.author}}
+        </h5>
+      </a>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock content %} {% block title %} HomePage {% endblock title %}

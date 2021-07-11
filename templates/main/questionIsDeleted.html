@@ -1,0 +1,16 @@
+{% extends 'base1.html' %} 
+
+
+{% block content %}
+
+
+
+<div class="card" style="width: 150vh;height:150px; margin: 10px auto">
+    <div class="card-body" style="margin: 10px">
+      <h1>Question is Deleted</h1>
+      Now You Can Go To The Home Page 
+      <a href={% url 'homePage' %}><button class="btn btn-primary" >Home Page</button></a>
+    </div>
+  </div>
+
+{% endblock %}

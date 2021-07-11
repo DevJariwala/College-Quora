@@ -1,0 +1,73 @@
+<blockquote style="border-left: 6px solid lightgray;padding-left: 6px;margin-left: 15px;">
+
+    
+
+    
+
+        <p style="font-size: 20px;">{{response.body}}</p>
+        <small style="color:rgb(158, 155, 152);margin-left: 5px;">by {{response.user.username}}</small>
+
+        {% comment %} {% if user.is_authenticated %}
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">Reply</button>
+        {% endif %}
+
+             <!-- Modal -->
+            <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Reply on Comment </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <blockquote>
+                                <form action="/main/reply" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="question" value="{{question.id}}" >
+                                    <input type="hidden" name="parent" value="{{response.id}}" >
+                                    {{reply_form.body}}
+                                    <br>
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </form>
+                            </blockquote>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+   
+
+    {% for children in response.get_responses %}
+        {% include 'components/response.html' with response=children %}
+    {% endfor %} {% endcomment %}
+
+</blockquote>
+
+{% comment %} 
+    <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reply on Comment </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                         <blockquote id="reply-form-container-{{res.id}}" class="reply-form-container">
+ 
+                            <form action="/main/reply" method="post" class="reply-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="question" value="{{question.id}}"/>
+                                <input type="hidden" name="parent" value="{{res.id}}"/>
+                                <br>
+                                {{reply_form.body}}
+                                <br>
+                                
+                                <button class="btn btn-small btn-primary" type="submit" value="Reply"/>POST</button>
+                            </form>
+                        </blockquote>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> {% endcomment %}
